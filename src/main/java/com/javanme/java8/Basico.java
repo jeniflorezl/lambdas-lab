@@ -1,6 +1,11 @@
 package com.javanme.java8;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 /**
  * Clase con ejercicios nivel básico
@@ -17,7 +22,10 @@ public class Basico {
      * @return Lista que contiene las palabras en mayúsculas
      */
     public List<String> ejercicio1(List<String> palabras) {
-        throw new UnsupportedOperationException();
+        return palabras
+                .stream()
+                .map(s -> s.toUpperCase())
+                .collect(Collectors.toList());
     }
 
     /**
@@ -29,7 +37,10 @@ public class Basico {
      * @return lista que contiene cadenas de texto cuyo tamaño de caracteres es superior a 10
      */
     public List<String> ejercicio2(List<String> listado) {
-        throw new UnsupportedOperationException();
+        List<String> resultado = new ArrayList<>(listado);
+        return resultado.stream()
+                .filter(r -> r.length() > 10)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -42,7 +53,10 @@ public class Basico {
      * @see java.util.stream.Collectors
      */
     public String ejercicio3(List<String> listado) {
-        throw new UnsupportedOperationException();
+        return listado.stream()
+                .skip(2)
+                .limit(3)
+                .collect(joining("-"));
     }
 
     /**
@@ -56,7 +70,11 @@ public class Basico {
      * @see java.util.stream.Collectors
      */
     public List<Integer> ejercicio4(List<String> listado) {
-        throw new UnsupportedOperationException();
+        return listado.stream()
+                .mapToInt(Integer::parseInt)
+                .sorted()
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     /**
@@ -71,5 +89,8 @@ public class Basico {
      */
     public List<String> ejercicio5(List<String> listado) {
         throw new UnsupportedOperationException();
+        //omparator<String> tamaño = Comparator.comparing(String::length);
+        //Comparator<String> alfabeticamente = tamaño.thenComparing(Comparator.comparing(String::compareToIgnoreCase));
+
     }
 }
